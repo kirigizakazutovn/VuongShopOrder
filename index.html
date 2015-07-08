@@ -24,28 +24,33 @@
                 opacity: 1;
             }
 
+		#passportImage {
+			position: relative;
+		}
+			
         #lblNote, #imgCharm, #imgCover {
-            position: relative;
+            position: absolute;
         }
 
         #imgCharm {
-            top: -215px;
-            left: 240px;
+            top: 260px;
+            left: 260px;
             width: 90px;
             z-index: 2;
         }
 
         #imgCharm.long {
-            top: -265px;
-            left: 230px;
+            top: 210px;
+            left: 250px;
         }
 
         #lblNote {
-            text-align: left;
+            text-align: center;
             transform: rotate(-10deg);
             text-transform: uppercase;
-            top: 398px;
-            left: 190px;
+            top: 368px;
+            left: 85px;
+			width: 350px;
             font-size: 23px;
             opacity: 0.8;
             color: rgb(119, 72, 34);
@@ -123,8 +128,9 @@
                 </div>
             </div>
             <div class="col s4" id="passportImage">
-                <h5 id="lblNote" ng-bind="name"></h5>
+                
                 <img ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/passport/{{selectedColorId}}.png" id="imgCover" /> 
+				<h5 id="lblNote" ng-bind="name"></h5>
                 <img ng-class="{long : selectedCharmId > 11}" ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/charm/{{selectedCharmId}}.png" id="imgCharm" />
                 
             </div>
