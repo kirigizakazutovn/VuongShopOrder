@@ -72,13 +72,13 @@
                 <div class="row">
                     <h4>Chọn màu</h4>
                     <div id="colorSelect" class="row">
-                        <img ng-src="/images/passport/{{color.id}}.png"
+                        <img ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/passport/{{color.id}}.png"
                              ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
                     </div>
 
                     <h4>Chọn charm</h4>
                     <div id="charmSelect" class="row">
-                        <img ng-src="/images/charm/{{charm.img}}.png" ng-class="{selected: charm.isSelected}"
+                        <img ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/charm/{{charm.img}}.png" ng-class="{selected: charm.isSelected}"
                              ng-click="selectCharm(charm)" ng-repeat="charm in charms" />
                     </div>
                     
@@ -124,8 +124,8 @@
             </div>
             <div class="col s4" id="passportImage">
                 <h5 id="lblNote" ng-bind="name"></h5>
-                <img ng-src="/images/passport/{{selectedColorId}}.png" id="imgCover" /> 
-                <img ng-class="{long : selectedCharmId > 11}" ng-src="/images/charm/{{selectedCharmId}}.png" id="imgCharm" />
+                <img ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/passport/{{selectedColorId}}.png" id="imgCover" /> 
+                <img ng-class="{long : selectedCharmId > 11}" ng-src="https://raw.githubusercontent.com/conanak99/VuongShopOrder/gh-pages/images/charm/{{selectedCharmId}}.png" id="imgCharm" />
                 
             </div>
         </div>
