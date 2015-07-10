@@ -1,68 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
     <title>Đặt hàng Vuong Store</title>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="css/nprogress.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection" />
     <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        #colorSelect img, #charmSelect img {
-            margin-left: 15px;
-            margin-bottom: 10px;
-            opacity: 0.5;
-            border: 2px solid black;
-            box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
-            width: 80px;
-            height: 80px;
-        }
-
-            #colorSelect img.selected, #charmSelect img.selected {
-                opacity: 1;
-            }
-
-		#passportImage {
-			position: relative;
-		}
-			
-        #lblNote, #imgCharm, #imgCover {
-            position: absolute;
-        }
-
-        #imgCharm {
-            top: 260px;
-            left: 260px;
-            width: 90px;
-            z-index: 2;
-        }
-
-        #imgCharm.long {
-            top: 210px;
-            left: 250px;
-        }
-
-        #lblNote {
-            text-align: center;
-			-webkit-transform: rotate(-10deg);
-            -moz-transform: rotate(-10deg);
-            -ms-transform: rotate(-10deg);
-            -o-transform: rotate(-10deg);
-            transform: rotate(-10deg);
-            transform: rotate(-10deg);
-            text-transform: uppercase;
-            top: 368px;
-            left: 85px;
-			width: 350px;
-            font-size: 23px;
-            opacity: 0.8;
-            color: rgb(119, 72, 34);
-            z-index: 3;
-        }
-    </style>
 </head>
+
 <body ng-app="app" ng-controller="myCtrl">
     <nav class="amber darken-2" role="navigation">
         <div class="nav-wrapper container">
@@ -82,26 +31,20 @@
                 <div class="row">
                     <h4>Chọn màu</h4>
                     <div id="colorSelect" class="row">
-                        <img ng-src="images/passport/{{color.id}}.jpg"
-                             ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
+                        <img ng-src="images/passport/{{color.id}}.jpg" ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
                     </div>
-
                     <h4>Chọn charm</h4>
                     <div id="charmSelect" class="row">
-                        <img ng-src="images/charm/{{charm.img}}.png" ng-class="{selected: charm.isSelected}"
-                             ng-click="selectCharm(charm)" ng-repeat="charm in charms" />
+                        <img ng-src="images/charm/{{charm.img}}.png" ng-class="{selected: charm.isSelected}" ng-click="selectCharm(charm)" ng-repeat="charm in charms" />
                     </div>
-                    
                     <h4>Nhập tên (Tiếng Việt không dấu)</h4>
                     <div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input id="name" ng-model="order.name" type="text" class="validate">
+                            <input id="name" ng-model="name" type="text" class="validate">
                             <label id="lblName" for="name">Tên</label>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <h4>Thông tin giao hàng</h4>
                     <div class="row">
                         <div class="col s6">
@@ -115,7 +58,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">home</i>
                                 <input id="address" ng-model="order.address" type="text" class="validate">
-                                <label  id="lblAdress"  for="address">Địa chỉ giao hàng</label>
+                                <label id="lblAdress" for="address">Địa chỉ giao hàng</label>
                             </div>
                         </div>
                     </div>
@@ -123,21 +66,56 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">comment</i>
                             <textarea id="note" ng-model="order.note" class="materialize-textarea"></textarea>
-                            <label  id="lblNotee"  for="note">Ghi chú (Thời điểm giao, gặp anh/chị)</label>
-                            <button ng-click="submit()" class="btn waves-effect waves-light" type="submit" name="action">
-                                Đặt hàng
-                                <i class="material-icons">send</i>
-                            </button>
+                            <label id="lblNotee" for="note">Ghi chú (Thời điểm giao, gặp anh/chị)</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col s4" id="passportImage">
-                
-                <img ng-src="images/passport/{{order.selectedColorId}}.jpg" id="imgCover" /> 
-				<h5 id="lblNote" ng-bind="order.name"></h5>
-                <img ng-class="{long : selectedCharmId > 11}" ng-src="images/charm/{{order.selectedCharmId}}.png" id="imgCharm" />
-                
+                <div class="row">
+                    <img ng-src="images/passport/{{selectedColorId}}.jpg" id="imgCover" />
+                    <h5 id="lblNote" ng-bind="name"></h5>
+                    <img ng-class="{long : selectedCharmId > 11}" ng-src="images/charm/{{selectedCharmId}}.png" id="imgCharm" />
+                </div>
+                <div class="row">
+                    <h5>Sản phẩm đặt mua</h5>
+                    <table id="cart" class="bordered">
+                        <tr>
+                            <th>Màu</th>
+                            <th>Charm</th>
+                            <th>Tên</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr ng-if="order.cart.length == 0">
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr ng-repeat="item in order.cart">
+                            <td><img ng-src="images/passport/{{item.colorId}}.jpg" /></td>
+                            <td><img ng-src="images/charm/{{item.charmId > 11 ? item.charmId + '_2' : item.charmId}}.png" /></td>
+                            <td>{{item.name}}</td>
+                            <td>
+                                <button ng-click="remove(item)"> Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="right-align" colspan="4">Tổng cộng: {{order.cart.length || 0}}</td>
+                        </tr>
+                    </table>
+                    <div class="table-footer">
+                        
+                        <div>
+                            <p>1. Chọn màu, charm và chữ bạn muốn khắc.</p>
+                            <p>2. Bấm "Mua" để đặt mua 1 sản phẩm. Bạn có thể đặt mua nhiều sản phẩm khác màu, charm và chữ.</p>
+                            <p>3. Sau khi mua ít nhất 1 sản phẩm, bấm "Đặt hàng" để thực hiện đặt hàng. Vui lòng điền đầy đủ thông tin giao hàng. </p>
+                        </div>
+                        <button ng-click="addToCart()" class="btn waves-effect waves-light" type="submit" name="action">
+                            Mua  <i class="material-icons">shopping_cart</i>
+                        </button>
+                        <button ng-disable="order.cart.length < 1" ng-class="{disabled : order.cart.length < 1}" ng-click="submit()" class="btn waves-effect waves-light" type="submit" name="action">
+                            Đặt hàng <i class="material-icons">shop</i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -148,123 +126,180 @@
             </div>
         </div>
     </footer>
-    <div id="rightModal" class="modal bottom-sheet">
-        <div class="modal-content">
-            <h4 class="purple-text text-accent-3">Right Choice</h4>
-            <p>You choose a girl. Your point: {{point}}</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Continue</a>
-        </div>
-    </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.2/angular-route.min.js"></script>
     <script>
-        var app = angular.module('app', ['ngRoute']);
+    var app = angular.module('app', ['ngRoute']);
 
-        app.controller('myCtrl', ['$scope', '$http', '$location','$timeout', function ($scope, $http, $location, $timeout) {
-           	
-            $scope.colors = [
-                { id: 1, description: 'Màu 1' },
-                { id: 2, description: 'Màu 2' },
-                { id: 3, description: 'Màu 3' },
-                { id: 4, description: 'Màu 4' },
-                { id: 5, description: 'Màu 5' },
-                { id: 6, description: 'Màu 6' },
-                { id: 7, description: 'Màu 7' },
-                { id: 8, description: 'Màu 8' },
-                { id: 9, description: 'Màu 9' },
-                { id: 10, description: 'Màu 10' },
-                { id: 11, description: 'Màu 11' },
-                { id: 12, description: 'Màu 12' }
-            ];
+    app.controller('myCtrl', ['$scope', '$http', function($scope, $http) {
 
-            $scope.charms = [
-                { id: 1, description: 'Charm 1' , img: "1"},
-                { id: 2, description: 'Charm 2' , img: "2"},
-                { id: 3, description: 'Charm 3' , img: "3"},
-                { id: 4, description: 'Charm 4' , img: "4"},
-                { id: 5, description: 'Charm 5' , img: "5"},
-                { id: 6, description: 'Charm 6' , img: "6"},
-                { id: 7, description: 'Charm 7' , img: "7"},
-                { id: 8, description: 'Charm 8' , img: "8"},
-                { id: 9, description: 'Charm 9' , img: "9"},
-                { id: 10, description: 'Charm 10', img: '10' },
-                { id: 11, description: 'Charm 11', img: '11' },
-                { id: 12, description: 'Charm 12', img: '12_2' },
-                { id: 13, description: 'Charm 13', img: '13_2' }
-            ];
-			
-			 loadOrder();
-			
-            $scope.selectColor = function (color) {
-                $scope.colors.forEach(function (item) {
-                    item.isSelected = false;
-                });
-                color.isSelected = true;
-                $scope.order.selectedColorId = color.id;
+        loadCharmAndColor();
+        loadOrder();
+
+        $scope.selectColor = function(color) {
+            $scope.colors.forEach(function(item) {
+                item.isSelected = false;
+            });
+            color.isSelected = true;
+            $scope.selectedColorId = color.id;
+        };
+
+        $scope.selectCharm = function(charm) {
+            $scope.charms.forEach(function(item) {
+                item.isSelected = false;
+            });
+            charm.isSelected = true;
+            $scope.selectedCharmId = charm.id;
+        };
+
+        $scope.remove = function(item) {
+            var itemIndex = $scope.order.cart.indexOf(item);
+            $scope.order.cart.splice(itemIndex, 1);
+        };
+
+        $scope.addToCart = function() {
+            $scope.order.cart.push({
+                colorId: $scope.selectedColorId,
+                charmId: $scope.selectedCharmId,
+                name: $scope.name
+            });
+        }
+
+        $scope.submit = function() {
+            if ($scope.order.cart.length < 1) return;
+
+            var apiLink = 'https://api.mongolab.com/api/1/databases/vuong_shop_order/collections/orders/?apiKey=Rds2DpkLY7_VqsMfmgfSo_EdzafbQvOs';
+            $http.post(apiLink, $scope.order).then(function(rs) {
+                var newId = rs.data._id['$oid'];
+                var host = 'http://conanak99.github.io/VuongShopOrder/';
+                // var host = 'file:///C:/Users/Huy%20Hoang/Source/Repos/VuongShopOrder/';
+                var link = host + 'order.html#/?id=' + newId;
+
+                prompt("Bạn đã đặt hàng thành công, hãy gửi link đơn hàng này cho facebook shop.\nLink đơn hàng:", link);
+            });
+        };
+
+        function loadOrder() {
+            $scope.selectedColorId = 1;
+            $scope.selectedCharmId = 1,
+                $scope.name = 'hoang';
+            $scope.order = {
+                phone: '',
+                note: '',
+                address: '',
+                cart: []
             };
+            selectCharmAndColor();
+        }
 
-            $scope.selectCharm = function (charm) {
-                $scope.charms.forEach(function (item) {
-                    item.isSelected = false;
-                });
-                charm.isSelected = true;
-                $scope.order.selectedCharmId = charm.id;
-            };
+        function loadCharmAndColor() {
+            $scope.colors = [{
+                id: 1,
+                description: 'Màu 1'
+            }, {
+                id: 2,
+                description: 'Màu 2'
+            }, {
+                id: 3,
+                description: 'Màu 3'
+            }, {
+                id: 4,
+                description: 'Màu 4'
+            }, {
+                id: 5,
+                description: 'Màu 5'
+            }, {
+                id: 6,
+                description: 'Màu 6'
+            }, {
+                id: 7,
+                description: 'Màu 7'
+            }, {
+                id: 8,
+                description: 'Màu 8'
+            }, {
+                id: 9,
+                description: 'Màu 9'
+            }, {
+                id: 10,
+                description: 'Màu 10'
+            }, {
+                id: 11,
+                description: 'Màu 11'
+            }, {
+                id: 12,
+                description: 'Màu 12'
+            }];
 
-			$scope.submit = function () {
-				var apiLink = 'https://api.mongolab.com/api/1/databases/vuong_shop_order/collections/orders/?apiKey=Rds2DpkLY7_VqsMfmgfSo_EdzafbQvOs';
-			    $http.post(apiLink, $scope.order).then(function(rs) {
-					var newId = rs.data._id['$oid'];
-					var host = 'http://conanak99.github.io/VuongShopOrder';
-					var link = host + '#/?id=' + newId;
-					
-					prompt("Bạn đã đặt hàng thành công, hãy gửi link đơn hàng này cho facebook shop.\nLink đơn hàng:", link);
-				});
-            };
-			
-			function loadOrder() {
-				var id = $location.search().id;
-				if(angular.isDefined(id)){
-					var apiLink = 'https://api.mongolab.com/api/1/databases/vuong_shop_order/collections/orders/'+ id + '?apiKey=Rds2DpkLY7_VqsMfmgfSo_EdzafbQvOs';
-					$http.get(apiLink).then(function(rs){
-							$scope.order = rs.data;
-							selectCharmAndColor();
-							
-							//Fix the weird binding bug
-							$timeout(function(){
-								$('#name, #phone, #address, #note').trigger('change'); 
-							});
-							
-					});
-				} else {
-					$scope.order = {
-						selectedColorId : 1,
-						selectedCharmId : 1,
-						phone : '',
-						note : '',
-						address: '',
-						name: 'hoang'
-					};
-					selectCharmAndColor();
-				}
-			}
-			
-			function selectCharmAndColor() {
-				$scope.colors.forEach(function (item) {
-                    item.isSelected = item.id == $scope.order.selectedColorId;
-                });
-			
-				$scope.charms.forEach(function (item) {
-                    item.isSelected = item.id == $scope.order.selectedCharmId;
-                });
-			}
-            
-        }]);
+            $scope.charms = [{
+                id: 1,
+                description: 'Charm 1',
+                img: "1"
+            }, {
+                id: 2,
+                description: 'Charm 2',
+                img: "2"
+            }, {
+                id: 3,
+                description: 'Charm 3',
+                img: "3"
+            }, {
+                id: 4,
+                description: 'Charm 4',
+                img: "4"
+            }, {
+                id: 5,
+                description: 'Charm 5',
+                img: "5"
+            }, {
+                id: 6,
+                description: 'Charm 6',
+                img: "6"
+            }, {
+                id: 7,
+                description: 'Charm 7',
+                img: "7"
+            }, {
+                id: 8,
+                description: 'Charm 8',
+                img: "8"
+            }, {
+                id: 9,
+                description: 'Charm 9',
+                img: "9"
+            }, {
+                id: 10,
+                description: 'Charm 10',
+                img: '10'
+            }, {
+                id: 11,
+                description: 'Charm 11',
+                img: '11'
+            }, {
+                id: 12,
+                description: 'Charm 12',
+                img: '12_2'
+            }, {
+                id: 13,
+                description: 'Charm 13',
+                img: '13_2'
+            }];
+        }
 
+        function selectCharmAndColor() {
+            $scope.colors.forEach(function(item) {
+                item.isSelected = item.id == $scope.selectedColorId;
+            });
+
+            $scope.charms.forEach(function(item) {
+                item.isSelected = item.id == $scope.selectedCharmId;
+            });
+        }
+
+    }]);
     </script>
 </body>
+
 </html>

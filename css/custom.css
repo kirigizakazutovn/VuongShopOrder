@@ -1,0 +1,70 @@
+#colorSelect img,
+#charmSelect img {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+    width: 80px;
+    height: 80px;
+}
+
+#cart img{
+    width: 50px;
+    height: 50px;
+}
+
+#cart-order img{
+    width: 100px;
+    height: 100px;
+}
+
+#colorSelect img.selected,
+#charmSelect img.selected {
+    opacity: 1;
+}
+
+#passportImage > div:first-child {
+    position: relative;
+    height: 472px;
+}
+
+#lblNote,
+#imgCharm,
+#imgCover {
+    position: absolute;
+}
+
+#imgCharm {
+    top: 260px;
+    left: 260px;
+    width: 90px;
+    z-index: 2;
+}
+
+#imgCharm.long {
+    top: 210px;
+    left: 250px;
+}
+
+#lblNote {
+    text-align: center;
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    text-transform: uppercase;
+    top: 368px;
+    left: 85px;
+    width: 350px;
+    font-size: 23px;
+    opacity: 0.8;
+    color: rgb(119, 72, 34);
+    z-index: 3;
+}
+
+.table-footer {
+    margin-top: 20px;
+}
