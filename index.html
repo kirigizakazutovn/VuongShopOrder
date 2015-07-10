@@ -82,7 +82,7 @@
                 <div class="row">
                     <h4>Chọn màu</h4>
                     <div id="colorSelect" class="row">
-                        <img ng-src="images/passport/{{color.id}}.png"
+                        <img ng-src="images/passport/{{color.id}}.jpg"
                              ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
                     </div>
 
@@ -134,7 +134,7 @@
             </div>
             <div class="col s4" id="passportImage">
                 
-                <img ng-src="images/passport/{{order.selectedColorId}}.png" id="imgCover" /> 
+                <img ng-src="images/passport/{{order.selectedColorId}}.jpg" id="imgCover" /> 
 				<h5 id="lblNote" ng-bind="order.name"></h5>
                 <img ng-class="{long : selectedCharmId > 11}" ng-src="images/charm/{{order.selectedCharmId}}.png" id="imgCharm" />
                 
