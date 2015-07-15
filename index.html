@@ -69,7 +69,7 @@
                 <div class="col s7">
                     <h4>Chọn màu</h4>
                     <div id="colorSelect" class="row">
-                        <img ng-src="images/vi/{{color.id}}.jpg" ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
+                        <img title="{{color.description}}" ng-src="images/vi/{{color.id}}.jpg" ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
                     </div>
                     <h4>Nhập note (Tiếng Việt không dấu)</h4>
                     <div>
@@ -239,8 +239,8 @@
             var apiLink = 'https://api.mongolab.com/api/1/databases/vuong_shop_order/collections/orders/?apiKey=Rds2DpkLY7_VqsMfmgfSo_EdzafbQvOs';
             $http.post(apiLink, $scope.order).then(function(rs) {
                 var newId = rs.data._id['$oid'];
-                //var host = 'http://conanak99.github.io/VuongShopOrder/';
-                 var host = 'file:///C:/Users/Huy%20Hoang/Source/Repos/VuongShopOrder/';
+                var host = 'http://conanak99.github.io/VuongShopOrder/';
+                //var host = 'file:///C:/Users/Huy%20Hoang/Source/Repos/VuongShopOrder/';
                 var link = host + 'order.html#/?id=' + newId;
 
                 prompt("Bạn đã đặt hàng thành công, hãy gửi link đơn hàng này cho facebook shop.\nLink đơn hàng:", link);
