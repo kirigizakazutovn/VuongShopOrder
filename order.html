@@ -26,12 +26,22 @@
             <h4>Thông tin giao hàng</h4>
             <div class="row">
                 <div class="col s6">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="receiver" ng-model="order.receiver" type="text" class="validate">
+                            <label id="lblReceiver" for="receiver">Tên người nhận</label>
+                        </div>
+                    </div>
+                <div class="col s6">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">phone</i>
                         <input id="phone" ng-model="order.phone" type="text" class="validate">
                         <label id="lblPhone" for="phone">Số điện thoại</label>
                     </div>
                 </div>
+                
+            </div>
+            <div class="row">
                 <div class="col s6">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">home</i>
@@ -39,12 +49,12 @@
                         <label id="lblAdress" for="address">Địa chỉ giao hàng</label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">comment</i>
-                    <textarea id="note" ng-model="order.note" class="materialize-textarea"></textarea>
-                    <label id="lblNotee" for="note">Ghi chú (Thời điểm giao, gặp anh/chị)</label>
+                <div class="col s6">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">comment</i>
+                        <textarea id="note" ng-model="order.note" class="materialize-textarea"></textarea>
+                        <label id="lblNotee" for="note">Ghi chú (Thời điểm giao, gặp anh/chị)</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,20 +62,25 @@
             <h4>Sản phẩm đã đặt</h4>
             <table id="cart-order" class="bordered">
                 <tr>
-                    <th>Màu</th>
-                    <th>Charm</th>
                     <th>Tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Hàng cần giao</th>
+                    <th>Ghi chú </th>
                 </tr>
-                <tr ng-if="order.cart.length == 0">
-                    <td colspan="4"></td>
-                </tr>
-                <tr ng-repeat="item in order.cart">
-                    <td><img ng-src="images/passport/{{item.colorId}}.jpg" /></td>
-                    <td><img ng-src="images/charm/{{item.charmId > 11 ? item.charmId + '_2' : item.charmId}}.png" /></td>
-                    <td>{{item.name}}</td>
-                </tr>
+               <tr>
+                   <td>{{order.receiver}}</td>
+                   <td>{{order.phone}}</td>
+                   <td>{{order.address}}</td>
+                   <td>
+                       <div ng-repeat="item in order.cart">
+                          {{item.type}} : {{item.color}}, {{item.name | uppercase}} {{item.charm ? ', ' + item.charm : ''}}
+                       </div>
+                   </th>
+                   <td>{{order.note}}</td>
+               </tr>
                 <tr>
-                    <td class="right-align" colspan="4">Tổng cộng: {{order.cart.length || 0}}</td>
+                    <td class="right-align" colspan="5">Tổng cộng: {{order.cart.length || 0}}</td>
                 </tr>
             </table>
         </div>
@@ -96,7 +111,7 @@
 
                 //Fix the weird binding bug
                 $timeout(function() {
-                    $('#name, #phone, #address, #note').trigger('change');
+                    $('#receiver, #phone, #address, #note').trigger('change');
                 });
 
             });
