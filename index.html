@@ -151,7 +151,7 @@
                             <img ng-src="images/vi/{{item.colorId}}.jpg" />
                         </td>
                         <td ng-if='item.type == "passport"'>
-                            <img ng-src="images/charm/{{item.img}}.png" />
+                            <img ng-src="images/charm/{{item.charmImg}}.png" />
                         </td>
                         <td ng-if='item.type == "ví"'>
                         </td>
@@ -227,6 +227,7 @@
                 color: $scope.colors[$scope.selectedColorId - 1].description,
             };
             if (type == 'passport') {
+                item.charmImg = $scope.charms[$scope.selectedCharmId - 1].img;
                 item.charm = $scope.charms[$scope.selectedCharmId - 1].description;
             };
 
