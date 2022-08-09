@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Đặt hàng Vuong Store</title>
+    <title>Demo | Shop lưu niệm handmade 7B5</title>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs z-depth-1">
-                    <li class="tab col s6"><a class="active" href="#passportOrder">Passport Cover</a></li>
+                    <li class="tab col s6"><a class="active" href="#passportOrder">Vở ghi chú</a></li>
                     <li class="tab col s6"><a href="#viOrder">Ví</a></li>
                 </ul>
             </div>
@@ -71,7 +71,7 @@
                     <div id="colorSelect" class="row">
                         <img title="{{color.description}}" ng-src="images/vi/{{color.id}}.jpg" ng-class="{selected: color.isSelected}" ng-click="selectColor(color)" ng-repeat="color in colors" />
                     </div>
-                    <h4>Nhập note (Tiếng Việt không dấu)</h4>
+                    <h4>Nhập tên bạn muốn in lên vở/ví</h4>
                     <div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">comment</i>
@@ -166,7 +166,7 @@
                 </table>
                 <div class="table-footer">
                     <div>
-                        <p>1. Chọn màu, charm và chữ bạn muốn khắc.</p>
+                        <p>1. Chọn màu, charm và chữ bạn muốn in lên.</p>
                         <p>2. Bấm "Mua" để đặt mua 1 sản phẩm. Bạn có thể đặt mua nhiều sản phẩm khác màu, charm và chữ.</p>
                         <p>3. Sau khi mua ít nhất 1 sản phẩm, bấm "Đặt hàng" để thực hiện đặt hàng.</p>
                         <p>4. Vui lòng điền tên, số điện thoại và địa chỉ giao hàng.</p>
@@ -181,7 +181,7 @@
     <footer class="page-footer amber darken-2">
         <div class="footer-copyright">
             <div class="container">
-                Copyright by <a class="orange-text text-lighten-3" href="http://materializecss.com">H.Pham | Aswig Solutions</a>
+                Demo viết bởi <a class="orange-text text-lighten-3" href="https://hieudev10.vercel.app">hieudev10</a>
             </div>
         </div>
     </footer>
